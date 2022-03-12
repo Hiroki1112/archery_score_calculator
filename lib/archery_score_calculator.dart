@@ -2,14 +2,23 @@ library archery_score_calculator;
 
 /// A Calculator for archery.
 /// Score is passed as string, and converted to int.
+/// Always use functions to add and remove scores
 class ArcheryScoreCalculator {
   List<String> _pointList = [];
+  List<int> scoreDistribution = List.generate(11, (i) => 0);
+  int get totalScore => totalPoint();
 
   void addPoint(String score) {
     _pointList.add(score);
+
+    int point = toPoint(score);
+    scoreDistribution[point]++;
   }
 
   void removePoint() {
+    int point = toPoint(_pointList.last);
+    scoreDistribution[point]--;
+
     _pointList.removeLast();
   }
 

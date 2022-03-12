@@ -34,4 +34,16 @@ void main() {
     calculator.addPoint('X');
     expect(calculator.totalPoint(), 10);
   });
+
+  test('score distribution test', () {
+    final calculator = ArcheryScoreCalculator();
+
+    // Add some points
+    calculator.addPoint('1');
+    calculator.addPoint('X');
+    calculator.addPoint('5');
+
+    // Check the score distribution
+    expect(calculator.scoreDistribution, [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
+  });
 }
