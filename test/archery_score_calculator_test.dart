@@ -19,4 +19,19 @@ void main() {
     expect(calculator.toPoint('X'), 10);
     expect(calculator.toPoint('M'), 0);
   });
+
+  test('test of totalPoint()', () {
+    final calculator = ArcheryScoreCalculator();
+    // The initial value of the total score is of course 0
+    expect(calculator.totalPoint(), 0);
+    // Add a single point
+    calculator.addPoint('1');
+    expect(calculator.totalPoint(), 1);
+    calculator.removePoint();
+    expect(calculator.totalPoint(), 0);
+
+    // Add X
+    calculator.addPoint('X');
+    expect(calculator.totalPoint(), 10);
+  });
 }
