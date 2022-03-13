@@ -18,11 +18,14 @@ class ArcheryScoreCalculator {
     }
   }
 
-  void removePoint() {
+  void removePoint({int index = -1}) {
     int point = toPoint(_pointList.last);
     scoreDistribution[point]--;
-
-    _pointList.removeLast();
+    if (index == -1) {
+      _pointList.removeLast();
+    } else {
+      _pointList.removeAt(index);
+    }
   }
 
   int toPoint(String point) {

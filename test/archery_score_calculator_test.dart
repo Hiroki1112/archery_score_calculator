@@ -40,6 +40,32 @@ void main() {
     expect(calculator.totalScore, 30);
   });
 
+  test('test of removePoint()', () {
+    final calculator = ArcheryScoreCalculator();
+
+    // Add some points
+    calculator.addPoint('1');
+    calculator.addPoint('X');
+    calculator.addPoint('M');
+    calculator.addPoint('5');
+
+    // Check total score
+    expect(calculator.totalScore, 16);
+
+    // Calling removePoint() with no arguments(Removed from the end)
+    calculator.removePoint();
+    expect(calculator.totalScore, 11);
+
+    // Calling removePoint() with index arguments
+    // (The points of the specified index are deleted.)
+    calculator.removePoint(index: 1);
+    expect(calculator.totalScore, 1);
+
+    // remove existing score
+    calculator.removePoint(index: 1);
+    expect(calculator.totalScore, 1);
+  });
+
   test('test of totalPoint()', () {
     final calculator = ArcheryScoreCalculator();
     // The initial value of the total score is of course 0
