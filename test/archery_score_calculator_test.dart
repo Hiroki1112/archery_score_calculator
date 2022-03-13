@@ -87,6 +87,27 @@ void main() {
     expect(calculator.totalPoint(), 10);
   });
 
+  test('test of getScorePerEnd()', () {
+    final calculator = ArcheryScoreCalculator();
+    // The initial value of the total score is of course 0
+    expect(calculator.getScorePerEnd(), [0, 0, 0, 0, 0, 0]);
+    // Add a single point without no arguments
+    calculator.addPoint('1');
+    expect(calculator.getScorePerEnd(), [1, 0, 0, 0, 0, 0]);
+    calculator.addPoint('X');
+    expect(calculator.getScorePerEnd(), [11, 0, 0, 0, 0, 0]);
+
+    calculator.addPoint('10');
+    calculator.addPoint('10');
+    calculator.addPoint('10');
+    calculator.addPoint('10');
+    calculator.addPoint('10');
+    expect(calculator.getScorePerEnd(), [51, 10, 0, 0, 0, 0]);
+
+    calculator.removePoint();
+    expect(calculator.getScorePerEnd(), [51, 0, 0, 0, 0, 0]);
+  });
+
   test('score distribution test', () {
     final calculator = ArcheryScoreCalculator();
 

@@ -50,4 +50,12 @@ class ArcheryScoreCalculator {
     return _pointList.fold(
         0, (previousValue, element) => previousValue + toPoint(element));
   }
+
+  List<int> getScorePerEnd() {
+    List<int> scorePerEnd = List.generate(6, (i) => 0);
+    for (int i = 0; i < _pointList.length; i++) {
+      scorePerEnd[i ~/ 6] += toPoint(_pointList[i]);
+    }
+    return scorePerEnd;
+  }
 }
