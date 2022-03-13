@@ -70,14 +70,20 @@ void main() {
     final calculator = ArcheryScoreCalculator();
     // The initial value of the total score is of course 0
     expect(calculator.totalPoint(), 0);
-    // Add a single point
+    // Add a single point without no arguments
     calculator.addPoint('1');
     expect(calculator.totalPoint(), 1);
     calculator.removePoint();
     expect(calculator.totalPoint(), 0);
-
-    // Add X
     calculator.addPoint('X');
+    expect(calculator.totalPoint(), 10);
+
+    // Add a single point with index argument
+    calculator.addPoint('1', index: 0);
+    expect(calculator.totalPoint(), 1);
+    calculator.addPoint('X');
+    expect(calculator.totalPoint(), 11);
+    calculator.removePoint(index: 0);
     expect(calculator.totalPoint(), 10);
   });
 
