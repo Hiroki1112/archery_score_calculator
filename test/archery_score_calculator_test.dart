@@ -112,6 +112,32 @@ void main() {
     expect(calculator.getScorePerEnd(), [51, 0, 0, 0, 0, 0]);
   });
 
+  test('test of getScorePerHalfEnd()', () {
+    final calculator = ArcheryScoreCalculator();
+    // The initial value of the total score is of course 0
+    expect(
+        calculator.getScorePerHalfEnd(), [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    // Add a single point without no arguments
+    calculator.addPoint('1');
+    expect(
+        calculator.getScorePerHalfEnd(), [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    calculator.addPoint('X');
+    expect(
+        calculator.getScorePerHalfEnd(), [11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+
+    calculator.addPoint('10');
+    calculator.addPoint('10');
+    calculator.addPoint('10');
+    calculator.addPoint('10');
+    calculator.addPoint('10');
+    expect(calculator.getScorePerHalfEnd(),
+        [21, 30, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+
+    calculator.removePoint();
+    expect(calculator.getScorePerHalfEnd(),
+        [21, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  });
+
   test('score distribution test', () {
     final calculator = ArcheryScoreCalculator();
 
