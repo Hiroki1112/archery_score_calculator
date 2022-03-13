@@ -20,6 +20,26 @@ void main() {
     expect(calculator.toPoint('M'), 0);
   });
 
+  test('test of addPoint()', () {
+    final calculator = ArcheryScoreCalculator();
+
+    // Add some points
+    calculator.addPoint('1');
+    calculator.addPoint('X');
+    calculator.addPoint('5');
+
+    // Check total score
+    expect(calculator.totalScore, 16);
+
+    // update existing score
+    calculator.addPoint('X', index: 0);
+    expect(calculator.totalScore, 25);
+
+    // update existing score
+    calculator.addPoint('X', index: 2);
+    expect(calculator.totalScore, 30);
+  });
+
   test('test of totalPoint()', () {
     final calculator = ArcheryScoreCalculator();
     // The initial value of the total score is of course 0
@@ -45,25 +65,5 @@ void main() {
 
     // Check the score distribution
     expect(calculator.scoreDistribution, [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
-  });
-
-  test('update existing score with addPoint()', () {
-    final calculator = ArcheryScoreCalculator();
-
-    // Add some points
-    calculator.addPoint('1');
-    calculator.addPoint('X');
-    calculator.addPoint('5');
-
-    // Check total score
-    expect(calculator.totalScore, 16);
-
-    // update existing score
-    calculator.addPoint('X', index: 0);
-    expect(calculator.totalScore, 25);
-
-    // update existing score
-    calculator.addPoint('X', index: 2);
-    expect(calculator.totalScore, 30);
   });
 }
