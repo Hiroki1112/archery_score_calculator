@@ -91,5 +91,13 @@ void main() {
 
     // Check the score distribution
     expect(calculator.scoreDistribution, [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
+
+    // Add some points
+    calculator.addPoint('1', index: 0);
+    calculator.addPoint('X', index: 1);
+    calculator.addPoint('M', index: 2);
+
+    // Check the score distribution
+    expect(calculator.scoreDistribution, [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
   });
 }

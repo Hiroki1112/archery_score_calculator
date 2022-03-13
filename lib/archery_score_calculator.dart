@@ -11,11 +11,14 @@ class ArcheryScoreCalculator {
   void addPoint(String score, {int index = -1}) {
     if (index == -1) {
       _pointList.add(score);
-      int point = toPoint(score);
-      scoreDistribution[point]++;
     } else {
+      // Update an existing point.
+      int oldPoint = toPoint(_pointList[index]);
+      scoreDistribution[oldPoint]--;
       _pointList[index] = score;
     }
+    int point = toPoint(score);
+    scoreDistribution[point]++;
   }
 
   void removePoint({int index = -1}) {
