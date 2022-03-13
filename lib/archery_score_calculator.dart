@@ -8,11 +8,14 @@ class ArcheryScoreCalculator {
   List<int> scoreDistribution = List.generate(11, (i) => 0);
   int get totalScore => totalPoint();
 
-  void addPoint(String score) {
-    _pointList.add(score);
-
-    int point = toPoint(score);
-    scoreDistribution[point]++;
+  void addPoint(String score, {int index = -1}) {
+    if (index == -1) {
+      _pointList.add(score);
+      int point = toPoint(score);
+      scoreDistribution[point]++;
+    } else {
+      _pointList[index] = score;
+    }
   }
 
   void removePoint() {
@@ -28,7 +31,11 @@ class ArcheryScoreCalculator {
     } else if (point == 'M') {
       return 0;
     } else {
-      return int.parse(point);
+      try {
+        return int.parse(point);
+      } catch (e) {
+        return 0;
+      }
     }
   }
 
