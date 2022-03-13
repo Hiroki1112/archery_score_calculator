@@ -1,27 +1,35 @@
 library archery_score_calculator;
 
 /// A Calculator for archery.
-/// Score is passed as string, and converted to int.
-/// Always use functions to add and remove scores
+/// Author: Hiroki Iwashita
+/// Released under the MIT license
+
 class ArcheryScoreCalculator {
   List<String> _pointList = [];
   List<int> scoreDistribution = List.generate(11, (i) => 0);
   int get totalScore => totalPoint();
   int get numsOfArrows => _pointList.length;
 
-  void addPoint(String score, {int index = -1}) {
+  /// Add a point to the list.
+  /// [point] is a string of the form "X".
+  /// [point] must be in the range of [0, 10] or "X" or "M".
+  /// If [point] is invalid, this method converts it to "0".
+  void addPoint(String point, {int index = -1}) {
     if (index == -1) {
-      _pointList.add(score);
+      _pointList.add(point);
     } else {
       // Update an existing point.
       int oldPoint = toPoint(_pointList[index]);
       scoreDistribution[oldPoint]--;
-      _pointList[index] = score;
+      _pointList[index] = point;
     }
-    int point = toPoint(score);
-    scoreDistribution[point]++;
+    int pointInt = toPoint(point);
+    scoreDistribution[pointInt]++;
   }
 
+  /// Remove a point from the list.
+  /// [index] is the index of the point to be removed.
+  /// If [index] isn't passed, the last point is removed.
   void removePoint({int index = -1}) {
     int point = toPoint(_pointList.last);
     scoreDistribution[point]--;
@@ -32,6 +40,9 @@ class ArcheryScoreCalculator {
     }
   }
 
+  /// Convert string to point.
+  /// [point] must be in the range of [0, 10] or "X" or "M".
+  /// If [point] is invalid, this method converts it to "0".
   int toPoint(String point) {
     if (point == 'X') {
       return 10;
@@ -46,11 +57,13 @@ class ArcheryScoreCalculator {
     }
   }
 
+  /// Get the total point.
   int totalPoint() {
     return _pointList.fold(
         0, (previousValue, element) => previousValue + toPoint(element));
   }
 
+  /// Get point per end.(Sum of 6 arrows)
   List<int> getScorePerEnd() {
     List<int> scorePerEnd = List.generate(6, (i) => 0);
     for (int i = 0; i < _pointList.length; i++) {
@@ -59,6 +72,7 @@ class ArcheryScoreCalculator {
     return scorePerEnd;
   }
 
+  /// Get point per half end.(Sum of 3 arrows)
   List<int> getScorePerHalfEnd() {
     List<int> scorePerEnd = List.generate(12, (i) => 0);
     for (int i = 0; i < _pointList.length; i++) {
