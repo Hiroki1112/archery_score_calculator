@@ -18,6 +18,10 @@ void main() {
     expect(calculator.toPoint('10'), 10);
     expect(calculator.toPoint('X'), 10);
     expect(calculator.toPoint('M'), 0);
+
+    // Invalid inputs are converted to zeros.
+    expect(calculator.toPoint('a'), 0);
+    expect(calculator.toPoint('@'), 0);
   });
 
   test('test of addPoint()', () {
