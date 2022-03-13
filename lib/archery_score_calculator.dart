@@ -7,6 +7,7 @@ class ArcheryScoreCalculator {
   List<String> _pointList = [];
   List<int> scoreDistribution = List.generate(11, (i) => 0);
   int get totalScore => totalPoint();
+  int get numsOfArrows => _pointList.length;
 
   void addPoint(String score, {int index = -1}) {
     if (index == -1) {

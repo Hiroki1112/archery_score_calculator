@@ -106,4 +106,26 @@ void main() {
     // Check the score distribution
     expect(calculator.scoreDistribution, [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1]);
   });
+
+  test('nums of arrows test', () {
+    final calculator = ArcheryScoreCalculator();
+
+    // Add some points
+    calculator.addPoint('1');
+    calculator.addPoint('X');
+    calculator.addPoint('5');
+
+    // Check the number of arrows
+    expect(calculator.numsOfArrows, 3);
+
+    // Update some points
+    calculator.addPoint('1', index: 0);
+
+    // Check the number of arrows
+    expect(calculator.numsOfArrows, 3);
+
+    // remove some points
+    calculator.removePoint();
+    expect(calculator.numsOfArrows, 2);
+  });
 }
