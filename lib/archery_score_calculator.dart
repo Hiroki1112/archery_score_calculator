@@ -70,16 +70,13 @@ class ArcheryScoreCalculator {
   /// [point] must be in the range of [0, 10] or "X" or "M".
   /// If [point] is invalid, this method converts it to "0".
   int toPoint(String point) {
+    point = validateInput(point);
     if (point == 'X') {
       return 10;
     } else if (point == 'M') {
       return 0;
     } else {
-      try {
-        return int.parse(point);
-      } catch (e) {
-        return 0;
-      }
+      return int.parse(point);
     }
   }
 
