@@ -1,23 +1,10 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
 🚧[WIP]This package provides archery score calculation.This project is ongoing.
 
-## Features
+# Features
 
 If you pass scores as a string, it will calculate the total score, number of X's, subtotal points per end, etc.
 
-## 🚀Getting started
+# 🚀Getting started
 
 Open pubspec.yml and add the following to dependencies
 
@@ -32,7 +19,18 @@ import 'package:archery_score_calculator/archery_score_calculator.dart';
 var calculator = ArcheryScoreCalculator();
 ```
 
-## Usage
+# Score calculation in archery
+
+In archery, points are assigned according to the distance from the center of the target, ranging from X, 10 to 1, M.
+X is the number of arrows that hit the target in a circle further inside the 10-point circle, and is used to determine rank in the event of a tie.
+
+M stands for "Missing", meaning that the arrow did not hit the target. (There are various theories).
+
+According to the rules used in the Olympics, the total score of 36 shots is used to determine the ranking.
+
+For more detailed information, please visit the official World Archery website.
+
+# Usage
 
 ```dart
 final calculator = ArcheryScoreCalculator();
