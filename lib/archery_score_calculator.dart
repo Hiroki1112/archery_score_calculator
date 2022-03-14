@@ -24,6 +24,7 @@ class ArcheryScoreCalculator {
   List<int> scoreDistribution = List.generate(11, (i) => 0);
   int get totalScore => totalPoint();
   int get numsOfArrows => _pointList.length;
+  List<String> get pointList => _pointList;
 
   /// constructor.
   ArcheryScoreCalculator({List<String>? pointList}) {

@@ -3,6 +3,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:archery_score_calculator/archery_score_calculator.dart';
 
 void main() {
+  test('constructor test', () {
+    final calculator = ArcheryScoreCalculator(pointList: ['1', 'X', '5']);
+    expect(calculator.pointList, ['1', 'X', '5']);
+    expect(calculator.totalScore, 16);
+
+    // Pass invalid pointList
+    final calculator2 = ArcheryScoreCalculator(pointList: ['1', 'X', '5', 'a']);
+    expect(calculator2.pointList, ['1', 'X', '5', 'M']);
+  });
   test('test of toPoint()', () {
     final calculator = ArcheryScoreCalculator();
     expect(calculator.toPoint('0'), 0);
