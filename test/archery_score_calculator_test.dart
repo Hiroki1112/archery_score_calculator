@@ -138,6 +138,27 @@ void main() {
         [21, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
   });
 
+  test('test of validateInput()', () {
+    final calculator = ArcheryScoreCalculator();
+    expect(calculator.validateInput('1'), '1');
+    expect(calculator.validateInput('2'), '2');
+    expect(calculator.validateInput('3'), '3');
+    expect(calculator.validateInput('4'), '4');
+    expect(calculator.validateInput('5'), '5');
+    expect(calculator.validateInput('6'), '6');
+    expect(calculator.validateInput('7'), '7');
+    expect(calculator.validateInput('8'), '8');
+    expect(calculator.validateInput('9'), '9');
+    expect(calculator.validateInput('10'), '10');
+    expect(calculator.validateInput('X'), 'X');
+    expect(calculator.validateInput('M'), 'M');
+
+    // invalid inputs are converted to "M".
+    expect(calculator.validateInput('a'), 'M');
+    expect(calculator.validateInput('@'), 'M');
+    expect(calculator.validateInput('0'), 'M');
+  });
+
   test('score distribution test', () {
     final calculator = ArcheryScoreCalculator();
 

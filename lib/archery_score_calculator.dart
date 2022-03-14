@@ -5,10 +5,36 @@ library archery_score_calculator;
 /// Released under the MIT license
 
 class ArcheryScoreCalculator {
+  // ignore: constant_identifier_names
+  static const ALLOWED_INPUTS = [
+    'M',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    'X',
+  ];
   List<String> _pointList = [];
   List<int> scoreDistribution = List.generate(11, (i) => 0);
   int get totalScore => totalPoint();
   int get numsOfArrows => _pointList.length;
+
+  /// constructor.
+  ArcheryScoreCalculator({List<String>? pointList}) {
+    if (pointList != null) {
+      _pointList = pointList.map((point) => validateInput(point)).toList();
+      for (var p in _pointList) {
+        int point = toPoint(p);
+        scoreDistribution[point]++;
+      }
+    }
+  }
 
   /// Add a point to the list.
   /// [point] is a string of the form "X".
@@ -79,5 +105,17 @@ class ArcheryScoreCalculator {
       scorePerEnd[i ~/ 3] += toPoint(_pointList[i]);
     }
     return scorePerEnd;
+  }
+
+  /// Validate inputs.
+  /// [input] must be in the range of [0, 10] or "X" or "M".(Defined in [ALLOWED_INPUTS])
+  /// If [input] is invalid, this method returns "M".
+  /// If [input] is valid, this method returns [input].
+  String validateInput(String input) {
+    if (!ALLOWED_INPUTS.contains(input)) {
+      // throw ArgumentError('Invalid input: $input');
+      return "M";
+    }
+    return input;
   }
 }
