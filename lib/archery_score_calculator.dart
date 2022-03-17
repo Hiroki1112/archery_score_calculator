@@ -20,14 +20,25 @@ class ArcheryScoreCalculator {
     '10',
     'X',
   ];
+
   List<String> _pointList = [];
   List<int> scoreDistribution = List.generate(11, (i) => 0);
+  // Meta data
+  String? distance;
+  String? targetType;
+  String? memo;
+  late DateTime dateCreated;
+  late DateTime dateUpdated;
+
+  // getters
   int get totalScore => totalPoint();
   int get numsOfArrows => _pointList.length;
   List<String> get pointList => _pointList;
 
   /// constructor.
   ArcheryScoreCalculator({List<String>? pointList}) {
+    dateCreated = DateTime.now();
+    dateUpdated = DateTime.now();
     if (pointList != null) {
       _pointList = pointList.map((point) => validateInput(point)).toList();
       for (var p in _pointList) {

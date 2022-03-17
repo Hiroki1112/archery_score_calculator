@@ -209,4 +209,20 @@ void main() {
     calculator.removePoint();
     expect(calculator.numsOfArrows, 2);
   });
+
+  test('meta info test', () {
+    final calculator = ArcheryScoreCalculator();
+
+    // Add some meta info
+    calculator.distance = '50m';
+    calculator.targetType = 'Outdoor';
+    calculator.memo = 'memo test';
+
+    // Check the meta info
+    expect(calculator.distance, '50m');
+    expect(calculator.targetType, 'Outdoor');
+    expect(calculator.memo, 'memo test');
+    expect(calculator.dateCreated, isNotNull);
+    expect(calculator.dateUpdated, isNotNull);
+  });
 }
